@@ -41,4 +41,4 @@ python3 github_mirror.py [-h] [-g GROUP] (-u URLS [URLS ...] | -f FILE) -t TOKEN
     
     python3 github_mirror -f github_mirrors.txt -u "https://github.com/s3rius/FastAPI-template.git"
     
-    python3 gitlab_mirror.py --gitlab "https://gitlab.company.ru" -t "git-QwertY1245kde" -g 2059 -u "https://github.com/s3rius/FastAPI-template.git"
+    python3 github_mirror.py --gitlab "https://gitlab.company.ru" -t "git-QwertY1245kde" -g 2059 -u "https://github.com/s3rius/FastAPI-template.git"
