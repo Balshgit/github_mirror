@@ -43,9 +43,10 @@ def main():
         threads_ready_statistic(threads)  # add threads ready status to log output
 
     else:
-        logger.info('You must provide urls to mirror')
+        logger.info('You must provide at least one github url for mirror')
         sys.exit(1)
 
 
 if __name__ == '__main__':
     main()
+
