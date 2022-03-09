@@ -74,3 +74,17 @@ https://github.com/KristianOellegaard/django-health-check.git
 https://github.com/wemake-services/django-split-settings.git
 https://github.com/jazzband/django-constance.git
 https://github.com/numpy/numpy.git
+https://github.com/mher/flower.git
+https://github.com/hynek/structlog.git
+https://github.com/bradmontgomery/django-querycount.git
+https://github.com/justinmayer/django-autoslug.git
+https://github.com/SmileyChris/easy-thumbnails.git
+https://github.com/jonasundderwolf/django-image-cropping.git
+https://github.com/marshmallow-code/marshmallow.git
+https://github.com/TvoroG/pytest-lazy-fixture.git
+https://github.com/PyCQA/flake8.git
+https://github.com/getsentry/responses.git
+https://github.com/gotcha/ipdb.git
+https://github.com/pypa/setuptools.git
+https://github.com/jazzband/django-redis.git
+https://github.com/sebleier/django-redis-cache.git

@@ -92,13 +92,14 @@ class RepositoryCreator:
             elif request.status_code != self.HTTP_200_OK:
                 logger.error(f'Error pull repository. Status code: {request.status_code}. Reason: {request.text}')
 
-    def create_repository_mirror(self, **kwargs):
+    def create_repository_mirror(self, github_url: str, group_id: int):
         """
         Base action for one thread. Creates repository, add mirror url and triggers pull at te end
 
-        :param kwargs: Can contain github url to mirror of, gitlab group ID
+        :param github_url: Github url which will be mirrored
+        :param group_id: Gitlab group id which contains created repository
         """
-        repo_id = self.__create_new_project(kwargs['url'], kwargs['group_id'])
-        url = self.__add_pull_mirror(kwargs['url'], repo_id)
+        repo_id = self.__create_new_project(github_url, group_id)
+        url = self.__add_pull_mirror(github_url, repo_id)
         if url:
             self.__pull_github_repo(url, repo_id)

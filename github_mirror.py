@@ -1,5 +1,5 @@
 import sys
-from threading import Thread, Semaphore
+from threading import Thread
 
 from core.argument_parser import create_parser
 from core.repo_creator import RepositoryCreator
@@ -33,15 +33,13 @@ def main():
     if mirror_urls:
         for url in set(mirror_urls):  # github urls must be unique
             thread = Thread(target=repository_creator.create_repository_mirror,
-                            kwargs={'url': url, 'group_id': group_id, })
+                            kwargs={'github_url': url, 'group_id': group_id, })
             threads.append(thread)
 
         for thread in threads:
-            with Semaphore(50):
-                thread.start()
+            thread.start()
 
         threads_ready_statistic(threads)  # add threads ready status to log output
-
     else:
         logger.info('You must provide at least one github url for mirror')
         sys.exit(1)

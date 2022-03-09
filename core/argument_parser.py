@@ -37,10 +37,10 @@ def create_parser() -> ArgumentParser:
     parser.add_argument('-g', '--group', required=False, type=int,
                         help='Add group id it can be found under group name. Id must be integer')
 
-    parser.add_argument('-u', '--urls', nargs='+', help='Provide url or urls to mirror with it in format: '
-                                                        'https://github.com/s3rius/FastAPI-template.git. '
-                                                        'You can provide multiple urls separated by space. '
-                                                        'Names will generate automatically from links')
+    parser.add_argument('-u', '--urls', nargs='+',
+                        help='Provide url or urls to mirror with it in format: '
+                             'https://github.com/s3rius/FastAPI-template.git. You can provide multiple urls '
+                             'separated by space. Names will generate automatically from links')
 
     parser.add_argument('-f', '--file', help='Add file with urls. Each url on new line. Can be combined with '
                                              '--url option. Names will generate automatically from links')
