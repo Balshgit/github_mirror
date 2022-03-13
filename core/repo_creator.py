@@ -62,7 +62,7 @@ class RepositoryCreator:
                     logger.info(f'Repository {repo_data["name"]} has been created')
                 return repo_data['id']
             else:
-                logger.error(f'Cant create new project. Status code: {request.status_code}. Reason: {request.text}')
+                logger.error(f'Cant create {name} project. Status code: {request.status_code}. Reason: {request.text}')
         except AttributeError:
             pass
 
