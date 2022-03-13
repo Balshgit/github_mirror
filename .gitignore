@@ -244,3 +244,6 @@ artifacts/
 
 # ipython:
 .ipython/
+
+# other
+github-personal.txt
