@@ -1,6 +1,6 @@
 from argparse import ArgumentParser
 
-GITLAB_URL = 'https://git.do.x5.ru'
+GIT_URL = 'https://git.mywistr.com'
 
 USAGE = '''github_mirror [-h] [-g GROUP] (-u URLS [URLS ...] | -f FILE) -t TOKEN
 --------------------------------------------------
@@ -34,7 +34,7 @@ def create_parser() -> ArgumentParser:
         usage=USAGE
     )
 
-    parser.add_argument('-g', '--group', required=False, type=int,
+    parser.add_argument('-g', '--group', required=False, type=str,
                         help='Add group id it can be found under group name. Id must be integer')
 
     parser.add_argument('-u', '--urls', nargs='+',
@@ -49,7 +49,10 @@ def create_parser() -> ArgumentParser:
                         help='Access token to gitlab API. More information: https://docs.gitlab.com/ee/user/profile/'
                              'personal_access_tokens.html#create-a-personal-access-token')
 
-    parser.add_argument('-l', '--gitlab', required=False, default=GITLAB_URL,
-                        help=f'Provide gitlab url. Default link {GITLAB_URL}')
+    parser.add_argument('-T', '--githubtoken', required=False, help='Please provide github token to get access '
+                                                                    'to private repositories')
+
+    parser.add_argument('-l', '--giturl', required=False, default=GIT_URL,
+                        help=f'Provide gitlab url. Default link {GIT_URL}')
 
     return parser

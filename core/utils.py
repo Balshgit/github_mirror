@@ -38,7 +38,7 @@ def threads_ready_statistic(threads: List[Thread]):
         statistic = Counter(threads_statistic)
         ready_count = statistic.get(False, 0)
         percent = int(ready_count / len(threads) * 100)
-        time.sleep(1)
+        time.sleep(5)
         if 0 < percent < 100:
             logger.info(f'Ready: {percent}%')
         if not any(threads_statistic):
