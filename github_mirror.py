@@ -25,11 +25,11 @@ def main():
     group_id = args.group if args.group else None
 
     git_url = args.giturl  # if not provided used default value https://git.mywistr.com
-    headers = {'Authorization': f'token {args.token}'}  # gitlab users token must be provided
+    headers = {'Authorization': f'token {args.token}'}  # git user token must be provided
 
     repository_creator = RepositoryCreator(gitlab_url=git_url, headers=headers)
 
-    github_token = args.githubtoken if args.githubtoken else None
+    github_token = args.githubtoken if args.githubtoken else None  # used for access to personal GitHub repositories
 
     threads = []
     if mirror_urls:
@@ -51,4 +51,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-

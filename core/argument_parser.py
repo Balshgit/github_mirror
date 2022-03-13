@@ -5,15 +5,15 @@ GIT_URL = 'https://git.mywistr.com'
 USAGE = '''github_mirror [-h] [-g GROUP] (-u URLS [URLS ...] | -f FILE) -t TOKEN
 --------------------------------------------------
 
-python3 github_mirror -u "https://github.com/s3rius/FastAPI-template.git" -g 2059 -t "git-QwertY1245kde"
+python3 github_mirror.py -u "https://github.com/s3rius/FastAPI-template.git" -g 2059 -t "glb-QwertY1245kde"
 
-python3 github_mirror -u "https://github.com/s3rius/FastAPI-template.git" "https://github.com/sqlalchemy/sqlalchemy.git" -t "git-QwertY1245kde"
+python3 github_mirror.py -u "https://github.com/s3rius/FastAPI-template.git" "https://github.com/sqlalchemy/sqlalchemy.git" -t "glb-QwertY1245kde"
 
-python3 github_mirror -f github_mirrors.txt -g 59563 -t "git-QwertY1245kde"
+python3 github_mirror.py -f github_mirrors.txt -g 59563 -t "glb-QwertY1245kde"
 
-python3 github_mirror -f github_mirrors.txt -u "https://github.com/s3rius/FastAPI-template.git" -t "git-QwertY1245kde"
+python3 github_mirror.py -f github_mirrors.txt -u "https://github.com/s3rius/FastAPI-template.git" -t "glb-QwertY125kde"
 
-python3 github_mirror.py --gitlab "https://gitlab.company.ru" -t "git-QwertY1245kde" -g 2059
+python3 github_mirror.py --gitlab "https://gitlab.company.ru" -t "glb-QwertY1245kde" -g Personal -T "ghb-Qwerty321ldf"
 
 
 --------------------------------------------------
@@ -53,6 +53,6 @@ def create_parser() -> ArgumentParser:
                                                                     'to private repositories')
 
     parser.add_argument('-l', '--giturl', required=False, default=GIT_URL,
-                        help=f'Provide gitlab url. Default link {GIT_URL}')
+                        help=f'Provide git url where you want store your repositories. Default link {GIT_URL}')
 
     return parser
