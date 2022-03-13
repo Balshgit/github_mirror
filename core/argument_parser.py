@@ -2,18 +2,18 @@ from argparse import ArgumentParser
 
 GIT_URL = 'https://git.mywistr.com'
 
-USAGE = '''github_mirror [-h] [-g GROUP] (-u URLS [URLS ...] | -f FILE) -t TOKEN
+USAGE = '''github_mirror [-h] [-g GROUP] (-u URLS [URLS ...] | -f FILE) -t TOKEN [-T GitHubTOKEN]
 --------------------------------------------------
 
-python3 github_mirror.py -u "https://github.com/s3rius/FastAPI-template.git" -g 2059 -t "glb-QwertY1245kde"
+python3 github_mirror.py -u "https://github.com/s3rius/FastAPI-template.git" -g "GitHub" -t "gtb-QwertY1245kde"
 
-python3 github_mirror.py -u "https://github.com/s3rius/FastAPI-template.git" "https://github.com/sqlalchemy/sqlalchemy.git" -t "glb-QwertY1245kde"
+python3 github_mirror.py -u "https://github.com/s3rius/FastAPI-template.git" "https://github.com/sqlalchemy/sqlalchemy.git" -t "gtb-QwertY1245kde"
 
-python3 github_mirror.py -f github_mirrors.txt -g 59563 -t "glb-QwertY1245kde"
+python3 github_mirror.py -f github_mirrors.txt -g "Public" -t "gtb-QwertY1245kde"
 
-python3 github_mirror.py -f github_mirrors.txt -u "https://github.com/s3rius/FastAPI-template.git" -t "glb-QwertY125kde"
+python3 github_mirror.py -f github_mirrors.txt -u "https://github.com/s3rius/FastAPI-template.git" -t "gtb-QwertY125kde"
 
-python3 github_mirror.py --gitlab "https://gitlab.company.ru" -t "glb-QwertY1245kde" -g Personal -T "ghb-Qwerty321ldf"
+python3 github_mirror.py --giturl "https://gitea.company.ru" -t "gtb-QwertY1245kde" -u "https://github.com/Balshgit/sonar-scanner.git" -g "Personal" -T "ghb-Qwerty321ldf"
 
 
 --------------------------------------------------
@@ -28,14 +28,14 @@ def create_parser() -> ArgumentParser:
     """
     parser = ArgumentParser(
         prog='github_mirror',
-        description='''Script to add mirror repo into gitlab''',
+        description='''Script to add mirror repo into gitea''',
         epilog='''the developer is not responsible for the operation of the script :)''',
         add_help=True,
         usage=USAGE
     )
 
     parser.add_argument('-g', '--group', required=False, type=str,
-                        help='Add group id it can be found under group name. Id must be integer')
+                        help='Add repository to GROUP name. It also named Organisation')
 
     parser.add_argument('-u', '--urls', nargs='+',
                         help='Provide url or urls to mirror with it in format: '
@@ -46,8 +46,8 @@ def create_parser() -> ArgumentParser:
                                              '--url option. Names will generate automatically from links')
 
     parser.add_argument('-t', '--token', required=True,
-                        help='Access token to gitlab API. More information: https://docs.gitlab.com/ee/user/profile/'
-                             'personal_access_tokens.html#create-a-personal-access-token')
+                        help='Access token to gitea API. More information: https://docs.gitea.io/en-us/api-usage/'
+                             '#authentication')
 
     parser.add_argument('-T', '--githubtoken', required=False, help='Please provide github token to get access '
                                                                     'to private repositories')

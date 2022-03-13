@@ -8,7 +8,7 @@ Use python version > 3.8
 - -h, --help -> ```Show help message and exit```
 
 
-- -g GROUP, --group GROUP -> ```Add GROUP id it can be found under group name. Id must be integer```
+- -g GROUP, --group GROUP -> ```Add repository to GROUP name. It also named Organisation```
 
 
 - -u URL [URL ...], --urls URL [URL ...] 
@@ -19,9 +19,13 @@ Use python version > 3.8
 ```Add file with urls. Each url on new line. Can be combined with --url option. Names will generate automatically from links```
 
 - -t TOKEN, --token TOKEN
-```Access token to gitlab API. More information:``` [gitlab docs](https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html#create-a-personal-access-token)
+```Access token to gitea API. More information:``` [gitea docs](https://docs.gitea.io/en-us/api-usage/#authentication)
 
-- -l GITLAB, --gitlab GITLAB ```Provide gitlab url. Default link``` https://git.do.x5.ru
+- T GITHUBTOKEN, --githubtoken GITHUBTOKEN 
+- ```Please provide github token to get access to private repositories``` [github tokens](https://github.com/settings/tokens)
+
+
+- -l GITURL, --giturl GITURL ```Provide git url. Default link``` https://git.mywistr.com
 
 
 ## Usage 
@@ -33,12 +37,12 @@ python3 github_mirror.py [-h] [-g GROUP] (-u URLS [URLS ...] | -f FILE) -t TOKEN
 
 ## Examples:
 
-    python3 github_mirror -u "https://github.com/s3rius/FastAPI-template.git" -g 2059 -t "git-QwertY1245kde"
+    python3 github_mirror.py -u "https://github.com/s3rius/FastAPI-template.git" -g "GitHub" -t "gtb-QwertY1245kde"
     
-    python3 github_mirror -u "https://github.com/s3rius/FastAPI-template.git" "https://github.com/sqlalchemy/sqlalchemy.git" -t "git-QwertY1245kde"
+    python3 github_mirror.py -u "https://github.com/s3rius/FastAPI-template.git" "https://github.com/sqlalchemy/sqlalchemy.git" -t "gtb-QwertY1245kde"
     
-    python3 github_mirror -f github_mirrors.txt -g 59563 -t "git-QwertY1245kde"
+    python3 github_mirror.py -f github_mirrors.txt -g "Public" -t "gtb-QwertY1245kde"
     
-    python3 github_mirror -f github_mirrors.txt -u "https://github.com/s3rius/FastAPI-template.git" -t "git-QwertY1245kde"
+    python3 github_mirror.py -f github_mirrors.txt -u "https://github.com/s3rius/FastAPI-template.git" -t "gtb-QwertY125kde"
     
-    python3 github_mirror.py --gitlab "https://gitlab.company.ru" -t "git-QwertY1245kde" -g 2059 -u "https://github.com/s3rius/FastAPI-template.git"
+    python3 github_mirror.py --giturl "https://gitea.company.ru" -t "gtb-QwertY1245kde" -u "https://github.com/Balshgit/sonar-scanner.git" -g "Personal" -T "ghb-Qwerty321ldf"

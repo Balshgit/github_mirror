@@ -16,7 +16,7 @@ def main():
     # parse urls
     if args.file:
         with open(f'{args.file}', mode='r') as file:
-            lines = [repo.strip() for repo in file]
+            lines = [line.replace('\n', '').strip() for line in file.readlines()]
         mirror_urls.extend(lines)
     if args.urls:
         mirror_urls.extend(args.urls)
