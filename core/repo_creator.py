@@ -43,7 +43,7 @@ class RepositoryCreator:
 
         # name of repository will generate automatically from link
         name = url.split('/')[-1].replace('.git', '')
-        update_time = random.randint(48, 96)  # prevent update all repos at the same time
+        update_time = random.randint(120, 580)  # prevent update all repos at the same time
         git_data = {'repo_name': name, "wiki": True, "private": False, 'mirror_interval': f'{update_time}h0m0s',
                     "mirror": True, "lfs": True, "clone_addr": url}
         if group_name:
