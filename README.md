@@ -46,3 +46,10 @@ python3 github_mirror.py [-h] [-g GROUP] (-u URLS [URLS ...] | -f FILE) -t TOKEN
     python3 github_mirror.py -f github_mirrors.txt -u "https://github.com/s3rius/FastAPI-template.git" -t "gtb-QwertY125kde"
     
     python3 github_mirror.py --giturl "https://gitea.company.ru" -t "gtb-QwertY1245kde" -u "https://github.com/Balshgit/sonar-scanner.git" -g "Personal" -T "ghb-Qwerty321ldf"
+
+
+## Create Bin
+
+```bash
+pyinstaller github_mirror.py -F
+```
