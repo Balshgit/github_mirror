@@ -1,5 +1,5 @@
 import sys
-from threading import Thread
+from threading import Thread, Semaphore
 
 from core.argument_parser import create_parser
 from core.repo_creator import RepositoryCreator
@@ -16,7 +16,7 @@ def main():
     # parse urls
     if args.file:
         with open(f'{args.file}', mode='r') as file:
-            lines = [repo.strip() for repo in file]
+            lines = [line.replace('\n', '').strip() for line in file.readlines()]
         mirror_urls.extend(lines)
     if args.urls:
         mirror_urls.extend(args.urls)
@@ -24,20 +24,24 @@ def main():
     # parse gitlab group of repositories if it exists
     group_id = args.group if args.group else None
 
-    gitlab_url = args.gitlab  # if not provided used default value https://git.do.x5.ru
-    headers = {'PRIVATE-TOKEN': args.token}  # gitlab users token must be provided
+    git_url = args.giturl  # if not provided used default value https://git.mywistr.com
+    headers = {'Authorization': f'token {args.token}'}  # git user token must be provided
 
-    repository_creator = RepositoryCreator(gitlab_url=gitlab_url, headers=headers)
+    repository_creator = RepositoryCreator(gitlab_url=git_url, headers=headers)
+
+    github_token = args.githubtoken if args.githubtoken else None  # used for access to personal GitHub repositories
 
     threads = []
     if mirror_urls:
         for url in set(mirror_urls):  # github urls must be unique
             thread = Thread(target=repository_creator.create_repository_mirror,
-                            kwargs={'github_url': url, 'group_id': group_id, })
-            threads.append(thread)
+                            kwargs={'github_url': url, 'group_id': group_id, 'auth_token': github_token, }
+                            )
 
-        for thread in threads:
-            thread.start()
+            threads.append(thread)
+        with Semaphore(10):
+            for thread in threads:
+                thread.start()
 
         threads_ready_statistic(threads)  # add threads ready status to log output
     else:
@@ -47,4 +51,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
