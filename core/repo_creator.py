@@ -9,13 +9,13 @@ from core.utils import logger
 
 class RepositoryCreator:
 
-    def __init__(self, gitlab_url: str, headers: dict):
-        self.gitlab_url = gitlab_url
+    def __init__(self, git_url: str, headers: dict):
+        self.git_url = git_url
         self.headers = headers
         self.HTTP_201_CREATED = 201
         self.HTTP_200_OK = 200
 
-    def __gitlab_request(self, method: str, url: str, data: dict = None) -> Union[Response, None]:
+    def __git_request(self, method: str, url: str, data: dict = None) -> Union[Response, None]:
         """
         Create request to gitlab
 
@@ -51,7 +51,7 @@ class RepositoryCreator:
         if auth_token:
             git_data['auth_token'] = auth_token
 
-        request = self.__gitlab_request('POST', f'{self.gitlab_url}/api/v1/repos/migrate', git_data)
+        request = self.__git_request('POST', f'{self.git_url}/api/v1/repos/migrate', git_data)
         try:
             if request.status_code == self.HTTP_201_CREATED:
                 repo_data = request.json()
