@@ -2,6 +2,12 @@
 
 Use python version > 3.8
 
+## Build
+
+```bash
+pyinstaller -F github_mirror.py
+```
+
 
 ## Argumetns:
 

@@ -6,7 +6,7 @@ from core.repo_creator import RepositoryCreator
 from core.utils import logger, threads_ready_statistic
 
 
-def main():
+def main() -> None:
 
     parser = create_parser()
     args = parser.parse_args(sys.argv[1:])

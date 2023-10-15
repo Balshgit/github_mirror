@@ -27,7 +27,7 @@ else:
     logger.addHandler(console_handler)
 
 
-def threads_ready_statistic(threads: List[Thread]):
+def threads_ready_statistic(threads: List[Thread]) -> None:
     """
     Getting information how many threads are running right now
 
