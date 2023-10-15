@@ -1,5 +1,6 @@
 import random
 from typing import Union
+from http import HTTPStatus
 
 import requests
 from requests import Response
@@ -9,13 +10,22 @@ from core.utils import logger
 
 class RepositoryCreator:
 
-    def __init__(self, gitlab_url: str, headers: dict):
-        self.gitlab_url = gitlab_url
+    def __init__(self, git_url: str, headers: dict) -> None:
+        self.git_url = git_url
         self.headers = headers
-        self.HTTP_201_CREATED = 201
-        self.HTTP_200_OK = 200
 
-    def __gitlab_request(self, method: str, url: str, data: dict = None) -> Union[Response, None]:
+    def create_repository_mirror(self, github_url: str, group_id: str, auth_token: str) -> None:
+        """
+        Base action for one thread. Creates repository, add mirror url and triggers pull at te end
+
+        :param github_url: GitGub url which will be mirrored
+        :param group_id: Gitlab group id which contains created repository
+        :param auth_token: GitGub token to access private repositories
+        """
+
+        self.__create_new_project(github_url, group_id, auth_token)
+
+    def __git_request(self, method: str, url: str, data: dict = None) -> Union[Response, None]:
         """
         Create request to gitlab
 
@@ -51,28 +61,16 @@ class RepositoryCreator:
         if auth_token:
             git_data['auth_token'] = auth_token
 
-        request = self.__gitlab_request('POST', f'{self.gitlab_url}/api/v1/repos/migrate', git_data)
+        request = self.__git_request('POST', f'{self.git_url}/api/v1/repos/migrate', git_data)
         try:
-            if request.status_code == self.HTTP_201_CREATED:
-                repo_data = request.json()
-                name_with_namespace = repo_data.get('full_name', None)
+            if request.status_code == HTTPStatus.CREATED:
+                response = request.json()
+                name_with_namespace = response.get('full_name', None)
                 if name_with_namespace:
                     logger.info(f'Repository {name_with_namespace} has been created')
                 else:
-                    logger.info(f'Repository {repo_data["name"]} has been created')
-                return repo_data['id']
+                    logger.info(f'Repository {response["name"]} has been created')
             else:
                 logger.error(f'Cant create {name} project. Status code: {request.status_code}. Reason: {request.text}')
         except AttributeError:
             pass
-
-    def create_repository_mirror(self, github_url: str, group_id: str, auth_token: str):
-        """
-        Base action for one thread. Creates repository, add mirror url and triggers pull at te end
-
-        :param github_url: GitGub url which will be mirrored
-        :param group_id: Gitlab group id which contains created repository
-        :param auth_token: GitGub token to access private repositories
-        """
-
-        self.__create_new_project(github_url, group_id, auth_token)

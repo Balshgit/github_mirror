@@ -1,6 +1,6 @@
 from argparse import ArgumentParser
 
-GIT_URL = 'https://git.mywistr.com'
+GIT_URL = 'https://git.mywistr.ru'
 
 USAGE = '''github_mirror [-h] [-g GROUP] (-u URLS [URLS ...] | -f FILE) -t TOKEN [-T GitHubTOKEN]
 --------------------------------------------------

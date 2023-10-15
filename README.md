@@ -2,6 +2,12 @@
 
 Use python version > 3.8
 
+## Build
+
+```bash
+pyinstaller -F github_mirror.py
+```
+
 
 ## Argumetns:
 
@@ -25,7 +31,7 @@ Use python version > 3.8
 - ```Please provide github token to get access to private repositories``` [github tokens](https://github.com/settings/tokens)
 
 
-- -l GITURL, --giturl GITURL ```Provide git url. Default link``` https://git.mywistr.com
+- -l GITURL, --giturl GITURL ```Provide git url. Default link``` https://git.mywistr.ru
 
 
 ## Usage 

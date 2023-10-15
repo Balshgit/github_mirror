@@ -6,7 +6,7 @@ from core.repo_creator import RepositoryCreator
 from core.utils import logger, threads_ready_statistic
 
 
-def main():
+def main() -> None:
 
     parser = create_parser()
     args = parser.parse_args(sys.argv[1:])
@@ -24,10 +24,10 @@ def main():
     # parse gitlab group of repositories if it exists
     group_id = args.group if args.group else None
 
-    git_url = args.giturl  # if not provided used default value https://git.mywistr.com
+    git_url = args.giturl  # if not provided used default value https://git.mywistr.ru
     headers = {'Authorization': f'token {args.token}'}  # git user token must be provided
 
-    repository_creator = RepositoryCreator(gitlab_url=git_url, headers=headers)
+    repository_creator = RepositoryCreator(git_url=git_url, headers=headers)
 
     github_token = args.githubtoken if args.githubtoken else None  # used for access to personal GitHub repositories
 
